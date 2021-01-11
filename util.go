@@ -2,6 +2,8 @@ package zu
 
 import (
 	"fmt"
+	"io/ioutil"
+	"net/http"
 	"time"
 )
 
@@ -22,4 +24,17 @@ func DumpHex(ab []byte, n int) string {
 		out = ab[:n]
 	}
 	return fmt.Sprintf(`%x`, out)
+}
+
+// FetchURL ...
+func FetchURL(url string) (ab []byte, err error) {
+
+	res, err := http.Get(url)
+	if err != nil {
+		return
+	}
+	ab, err = ioutil.ReadAll(res.Body)
+	res.Body.Close()
+
+	return
 }
