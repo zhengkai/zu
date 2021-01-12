@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"os"
 	"time"
 )
 
@@ -37,4 +38,10 @@ func FetchURL(url string) (ab []byte, err error) {
 	res.Body.Close()
 
 	return
+}
+
+// FileExists ...
+func FileExists(path string) bool {
+	_, err := os.Stat(path)
+	return !os.IsNotExist(err)
 }

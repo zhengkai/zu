@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"strings"
 	"zu"
 )
 
@@ -15,5 +16,11 @@ func main() {
 	j(zu.DumpHex([]byte{1, 2, 3, 4, 5}, 10))
 
 	ab, err := zu.FetchURL(`http://ifconfig.io/ip`)
-	j(`fetch url:`, string(ab), err)
+	j(`fetch url:`, strings.TrimSpace(string(ab)), err)
+
+	file := `/etc/passwd`
+	j(`file`, zu.FileExists(file), file)
+
+	file = `/etc/passwd-1283mcnakwk`
+	j(`file`, zu.FileExists(file), file)
 }
