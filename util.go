@@ -1,6 +1,7 @@
 package zu
 
 import (
+	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"net/http"
@@ -44,4 +45,15 @@ func FetchURL(url string) (ab []byte, err error) {
 func FileExists(path string) bool {
 	_, err := os.Stat(path)
 	return !os.IsNotExist(err)
+}
+
+// JSON ...
+func JSON(a interface{}) (s string) {
+	ab, err := json.Marshal(a)
+	if err != nil {
+		s = fmt.Sprintf(`(json marshal err: %s)`, err)
+		return
+	}
+	s = string(ab)
+	return
 }

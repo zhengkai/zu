@@ -23,4 +23,17 @@ func main() {
 
 	file = `/etc/passwd-1283mcnakwk`
 	j(`file`, zu.FileExists(file), file)
+
+	json()
+}
+
+func json() {
+
+	a := struct {
+		Name string `json:"name"`
+	}{
+		Name: "hello",
+	}
+
+	j(zu.JSON(a))
 }
