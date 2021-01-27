@@ -3,7 +3,9 @@ package main
 import (
 	"fmt"
 	"strings"
+	"time"
 	"zu"
+	"zu/speedlimit"
 )
 
 var j = fmt.Println
@@ -25,6 +27,8 @@ func main() {
 	j(`file`, zu.FileExists(file), file)
 
 	json()
+
+	speedLimit()
 }
 
 func json() {
@@ -36,4 +40,15 @@ func json() {
 	}
 
 	j(zu.JSON(a))
+}
+
+func speedLimit() {
+	sl, _ := speedlimit.New(time.Second*2, 10)
+	for i := 0; i < 12; i++ {
+		j(`speedlimit`, i, sl.CanAdd())
+	}
+	time.Sleep(time.Second * 3)
+	for i := 0; i < 12; i++ {
+		j(`speedlimit`, i, sl.CanAdd())
+	}
 }
