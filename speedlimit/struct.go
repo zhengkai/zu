@@ -1,7 +1,6 @@
 package speedlimit
 
 import (
-	"fmt"
 	"sync"
 	"time"
 )
@@ -34,7 +33,6 @@ func (li *limiter) CanAdd() (ok bool) {
 			break
 		}
 	}
-	fmt.Println(`stop i`, i, li.count, li.count-i)
 	if i == 0 {
 		li.mux.Unlock()
 		return

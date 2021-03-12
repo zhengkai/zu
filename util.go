@@ -57,3 +57,14 @@ func JSON(a interface{}) (s string) {
 	s = string(ab)
 	return
 }
+
+// JSONPretty ...
+func JSONPretty(a interface{}) (s string) {
+	ab, err := json.MarshalIndent(a, ``, "\t")
+	if err != nil {
+		s = fmt.Sprintf(`(json marshal err: %s)`, err)
+		return
+	}
+	s = string(ab)
+	return
+}
