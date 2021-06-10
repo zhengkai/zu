@@ -3,7 +3,6 @@ package zu
 import (
 	"encoding/json"
 	"fmt"
-	"os"
 	"time"
 )
 
@@ -24,12 +23,6 @@ func DumpHex(ab []byte, n int) string {
 		out = ab[:n]
 	}
 	return fmt.Sprintf(`%x`, out)
-}
-
-// FileExists ...
-func FileExists(path string) bool {
-	_, err := os.Stat(path)
-	return !os.IsNotExist(err)
 }
 
 // JSON ...
