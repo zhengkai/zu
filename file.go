@@ -13,10 +13,10 @@ func FileExists(path string) bool {
 
 // Brotli ...
 func Brotli(path string) (err error) {
-	return exec.Command(`/usr/bin/brotli`, `-Zfk`, path).Run()
+	return exec.Command(`/usr/bin/brotli`, `--best`, `--keep`, `--force`, path).Run()
 }
 
 // Gzip ...
 func Gzip(path string) (err error) {
-	return exec.Command(`/usr/bin/gzip`, `--best`, `-k`, path).Run()
+	return exec.Command(`/usr/bin/gzip`, `--best`, `--keep`, `--force`, path).Run()
 }
