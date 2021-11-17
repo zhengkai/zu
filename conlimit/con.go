@@ -1,28 +1,25 @@
 package conlimit
 
 import (
-	"fmt"
 	"sync"
 )
 
-// Con ...
-type Con struct {
+// Limiter ...
+type Limiter struct {
 	mux      sync.Mutex
 	count    int
 	capacity int
 }
 
 // New ...
-func New(capacity int) *Con {
-	return &Con{
+func New(capacity int) *Limiter {
+	return &Limiter{
 		capacity: capacity,
 	}
 }
 
 // Add ...
-func (c *Con) Add() (ok bool) {
-
-	fmt.Println(c.count)
+func (c *Limiter) Add() (ok bool) {
 
 	if c.count >= c.capacity {
 		return
@@ -41,7 +38,7 @@ func (c *Con) Add() (ok bool) {
 }
 
 // Done ...
-func (c *Con) Done() {
+func (c *Limiter) Done() {
 	c.mux.Lock()
 	c.count--
 	c.mux.Unlock()
