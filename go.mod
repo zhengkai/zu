@@ -1,3 +1,3 @@
 module github.com/zhengkai/zu
 
-go 1.15
+go 1.20
